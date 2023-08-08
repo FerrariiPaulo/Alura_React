@@ -7,16 +7,11 @@ import './Formulario.css'
 
 const Formulario = (props) => {
 
-    const classes = [
-        "Druida",
-        "Guerreiro", 
-        "Mago",
-        "Necromante",
-        "Paladino", 
-    ]
+  
 
     const [nome, setNome] = useState('')    
     const [imagem, setImagem] = useState('')
+    const [titulo, setTitulo] = useState('')
     const [classe, setClasse] = useState('')
 
     const aoSalvar = (evento) => {
@@ -24,22 +19,35 @@ const Formulario = (props) => {
         props.aoAdicionarPessoa({
             nome,            
             imagem,
+            titulo,
             classe
             
         })
+        setNome('')
+        setImagem('')
+        setTitulo('')
+        setClasse('')
     }
 
     return (
         <section className="formulario">
             <form onSubmit={aoSalvar}>
-                <h2>Preencha os dados para criar o card do colaborador</h2>
+                <h2>Preencha os dados para criar o seu avatar</h2>
                 <CampoTexto 
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Digite seu nome" 
                     valor = {nome}
                     aoAlterado = {valor => setNome(valor)}
-                />               
+                /> 
+
+                <CampoTexto 
+                    obrigatorio={true} 
+                    label="Título" 
+                    placeholder="Digite seu título" 
+                    valor = {titulo}
+                    aoAlterado = {valor => setTitulo(valor)}
+                />
                
                 <CampoTexto 
                     label="Imagem" 
@@ -50,7 +58,7 @@ const Formulario = (props) => {
                 <ListaSuspensa 
                     obrigatorio={true} 
                     label="Classe" 
-                    itens={classes}
+                    itens={props.classes}
                     valor = {classe}
                     aoAlterado = {valor => setClasse(valor)}
                 />

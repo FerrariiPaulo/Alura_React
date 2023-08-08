@@ -5,22 +5,65 @@ import Classe from './componentes/Classe';
 
 function App() {
 
+  const classes = [
+    {
+      nome:"Druida",
+      corPrimaria: "#379237",
+      corSecundaria: "#82CD47"
+    },
+    {
+      nome:"Guerreiro",
+      corPrimaria: "#6C3428",
+      corSecundaria: "#BA704F"
+    },
+    {
+      nome:"Ladino",
+      corPrimaria:"#080202",
+      corSecundaria: "#272829"
+    },
+    {
+      nome:"Mago",  
+      corPrimaria: "#3D246C",
+      corSecundaria: "#393646"
+    },
+    {
+      nome:"Necromante",
+      corPrimaria: "#900C3F",
+      corSecundaria: "#C70039"
+    },
+    {
+      nome:"Paladino",
+      corPrimaria:"#F4D160",
+      corSecundaria: "#FBEEAC"
+    },
+    {
+      nome:"Warlock",
+      corPrimaria:"#4C3A51",
+      corSecundaria: "#B25068"
+    }
+
+  ]
+
   const [pessoas, setPessoas] = useState([])
 
-  const adicionarNovaPessoa = (novaPessoa) => {
-    console.log(pessoas)
+  const adicionarNovaPessoa = (novaPessoa) => {    
     setPessoas([...pessoas, novaPessoa])
   }
 
   return (
     <div className="App"> 
       <Banner />
-      <Formulario aoAdicionarPessoa = {novaPessoa => adicionarNovaPessoa(novaPessoa)}/>
-      <Classe nome= "Druida" />
-      <Classe nome= "Guerreiro" />
-      <Classe nome= "Mago" />
-      <Classe nome= "Necromante" />
-      <Classe nome= "Paladino" />
+      <Formulario classes={classes.map(classe => classe.nome)}  aoAdicionarPessoa = {novaPessoa => adicionarNovaPessoa(novaPessoa)}/>
+
+      {classes.map(classe => <Classe 
+        key={classe.nome} 
+        nome= {classe.nome} 
+        corPrimaria={classe.corPrimaria}  
+        corSecundaria={classe.corSecundaria}
+        pessoas={pessoas.filter(pessoa => pessoa.classe === classe.nome)}
+      /> 
+      )}
+      
     </div>
   );
 }
