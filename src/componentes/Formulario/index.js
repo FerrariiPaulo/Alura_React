@@ -4,30 +4,28 @@ import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import './Formulario.css'
 
+
 const Formulario = (props) => {
 
-    const times = [
-        'Programação',
-        'Front-End',
-        'Data Science',
-        'Devops',
-        'UX e Design',
-        'Mobile',
-        'Inovação e Gestão'
+    const classes = [
+        "Druida",
+        "Guerreiro", 
+        "Mago",
+        "Necromante",
+        "Paladino", 
     ]
 
-    const [nome, setNome] = useState('')
-    const [cargo, setCargo] = useState('')
+    const [nome, setNome] = useState('')    
     const [imagem, setImagem] = useState('')
-    const [time, setTime] = useState('')
+    const [classe, setClasse] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
         props.aoAdicionarPessoa({
-            nome,
-            cargo,
+            nome,            
             imagem,
-            time
+            classe
+            
         })
     }
 
@@ -41,14 +39,8 @@ const Formulario = (props) => {
                     placeholder="Digite seu nome" 
                     valor = {nome}
                     aoAlterado = {valor => setNome(valor)}
-                />
-                <CampoTexto 
-                    obrigatorio={true} 
-                    label="Cargo" 
-                    placeholder="Digite seu cargo" 
-                    valor = {cargo}
-                    aoAlterado = {valor => setCargo(valor)}
-                />
+                />               
+               
                 <CampoTexto 
                     label="Imagem" 
                     placeholder="Digite o endereço da imagem" 
@@ -57,10 +49,10 @@ const Formulario = (props) => {
                 />
                 <ListaSuspensa 
                     obrigatorio={true} 
-                    label="Time" 
-                    itens={times}
-                    valor = {time}
-                    aoAlterado = {valor => setTime(valor)}
+                    label="Classe" 
+                    itens={classes}
+                    valor = {classe}
+                    aoAlterado = {valor => setClasse(valor)}
                 />
                 <Botao>
                     Criar Card
