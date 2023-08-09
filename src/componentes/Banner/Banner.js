@@ -7,7 +7,7 @@ export const Banner = () => {
             <div className= "banner-secao">
                 <img src="/imagens/banner.png" alt="O banner principal da página do Organo"/>                
             </div>
-            <a href="http://www.freepik.com">Designed by pch.vector / Freepik</a>
+            Image by <a href="https://www.freepik.com/free-photo/top-view-beautiful-rpg-still-life-items_22820805.htm">Freepik</a>
         </header>
     )
 }
